@@ -1,0 +1,26 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+
+group = "hcs.wu"
+version = "0.0.1"
+
+description = """colonne"""
+
+//sourceCompatibility = 1.8
+//targetCompatibility = 1.8
+
+//防止乱码
+[ compileJava, compileTestJava ]*.options*.encoding = 'UTF-8'
+
+
+repositories {
+   maven { url "http://maven.oschina.net/content/groups/public/" }
+   maven { url"https://repo.spring.io/libs-release" }
+   jcenter()
+   mavenCentral()
+}
+
+
+dependencies {
+	
+}
