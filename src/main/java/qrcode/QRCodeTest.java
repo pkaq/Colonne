@@ -20,6 +20,7 @@ public class QRCodeTest {
 
     private static final int BLACK = 0xFF000000;
     private static final int WHITE = 0xFFFFFFFF;
+
     /**
      * @param args
      */
@@ -38,7 +39,7 @@ public class QRCodeTest {
         BitMatrix bitMatrix = new MultiFormatWriter().encode(text,
                 BarcodeFormat.QR_CODE, width, height, hints);
         //生成二维码
-        File outputFile = new File("d:"+File.separator+"new.gif");
+        File outputFile = new File("d:" + File.separator + "new.gif");
         writeToFile(bitMatrix, format, outputFile);
     }
 
