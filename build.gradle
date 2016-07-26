@@ -1,7 +1,7 @@
 apply plugin: 'idea'
-apply plugin: 'java'
+apply plugin: 'jar'
 
-group = "hcs.wu"
+group = "pkaq.colonne"
 version = "0.0.1"
 
 description = """colonne"""
@@ -14,13 +14,11 @@ description = """colonne"""
 
 
 repositories {
-   maven { url "http://maven.oschina.net/content/groups/public/" }
-   maven { url"https://repo.spring.io/libs-release" }
-   jcenter()
    mavenCentral()
+   jcenter()
 }
 
 
 dependencies {
-	
+    testCompile 'junit:junit:+'
 }
