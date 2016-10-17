@@ -1,4 +1,4 @@
-package pkaq.colonne.restful;
+package pkaq.colonne.restful.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,10 +9,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
+  * 请求restful服务获取数据
   * Author: S.PKAQ
-  * Date: ${DATE}
-  * Time: ${TIME}
-  * To change this template use File | Settings | File Templates.
  */
 public class RestHelper {
 
@@ -26,11 +24,12 @@ public class RestHelper {
     public String get(String requestUrl,String requestMethod,String jsonParam){
 
         StringBuffer output = new StringBuffer();
-
+        URL targetUrl = null;
+        HttpURLConnection httpConnection = null;
         try {
-            URL targetUrl = new URL(requestUrl);
+            targetUrl = new URL(requestUrl);
+            httpConnection = (HttpURLConnection) targetUrl.openConnection();
 
-            HttpURLConnection httpConnection = (HttpURLConnection) targetUrl.openConnection();
             httpConnection.setDoInput(true);
             httpConnection.setDoOutput(true);
 
@@ -51,17 +50,15 @@ public class RestHelper {
 
             BufferedReader responseBuffer = new BufferedReader(new InputStreamReader((httpConnection.getInputStream())));
 
-            String backMsg = "";
+            String backMsg;
             while ((backMsg = responseBuffer.readLine()) != null) {
                 output.append(backMsg);
             }
 
-            httpConnection.disconnect();
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            httpConnection.disconnect();
         }
 
         return String.valueOf(output);
